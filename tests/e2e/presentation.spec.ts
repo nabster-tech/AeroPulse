@@ -36,6 +36,7 @@ test('dual timezone labels appear in focused tables and charts', async ({ page }
     .getByRole('combobox', { name: 'Breakdown' })
     .selectOption('records');
   await expect(page.getByRole('dialog').locator('tbody')).toContainText('UTC');
+  await expect(page.getByRole('dialog').locator('tbody')).toContainText('16 Sep');
   await expect(
     page.getByRole('dialog').getByRole('columnheader', { name: 'Airport time' }),
   ).toBeVisible();
