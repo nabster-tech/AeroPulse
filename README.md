@@ -2,6 +2,12 @@
 
 A React and TypeScript proof of concept for an airport operations analytics workspace. It implements all **71 requested KPIs** across **11 operational categories** using a coherent static dataset fixed to **17 September 2026, 14:00 IST**. The data boundary is asynchronous and replaceable, so production APIs can be introduced without rewriting the category views.
 
+## Tech stack
+
+The dashboard uses **React 19**, **TypeScript 6**, and **Vite 8**, with **Tailwind CSS** and project design tokens for styling. **Recharts** renders responsive visualizations, **React Grid Layout** provides draggable and resizable KPI cards, and **Radix UI** supplies accessible dialogs and menus. **TanStack Query** manages the asynchronous data boundary, **Zustand** manages layout drafts and persistence, and **Zod** validates browser-stored configuration. Quality gates use **Vitest**, **Playwright**, **axe**, **ESLint**, and **Prettier**. GitHub Actions builds and deploys the static application to GitHub Pages.
+
+See the complete [technology stack reference](docs/TECH_STACK.md), including architecture, tool responsibilities, testing, deployment, and the production integration path.
+
 ## Run locally
 
 Use Node.js 24 LTS and npm.
