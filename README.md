@@ -1,4 +1,4 @@
-# Airside · Airport operations
+# Airside Â· Airport operations
 
 A React and TypeScript proof of concept for an airport operations analytics workspace. It implements all **71 requested KPIs** across **11 operational categories** using a coherent static dataset fixed to **17 September 2026, 14:00 IST**. The data boundary is asynchronous and replaceable, so production APIs can be introduced without rewriting the category views.
 
@@ -39,6 +39,8 @@ The PoC intentionally uses static data and provisional KPI definitions. The sour
 
 ## Five-minute demonstration
 
+For a presenter-ready walkthrough with exact actions, speaking notes, a three-minute cutdown, likely questions, and recovery steps, use the [team demo script](docs/DEMO_SCRIPT.md).
+
 1. Move between KPI categories in the sidebar and use browser Back/Forward to show route persistence.
 2. Search for a KPI such as **Security Queue Wait Time**, open it, and inspect its definition, source, and detail table.
 3. Open **Edit layout**, drag a card, resize it from an edge or corner, set another card to full width, and save.
@@ -75,3 +77,4 @@ Browser tests start a production preview on port 4173. Screenshots are generated
 Production can add an HTTP adapter behind the existing source interface and a revision-aware server preferences repository. Formula ownership, source reconciliation, freshness, identity, permissions, observability, and operational certification remain production integration work.
 
 Dependency versions are pinned in `package.json` and `package-lock.json`.
+
