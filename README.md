@@ -39,6 +39,8 @@ The PoC intentionally uses static data and provisional KPI definitions. The sour
 
 ## Five-minute demonstration
 
+For a presenter-ready walkthrough with exact actions, speaking notes, a three-minute cutdown, likely questions, and recovery steps, use the [team demo script](docs/DEMO_SCRIPT.md).
+
 1. Move between KPI categories in the sidebar and use browser Back/Forward to show route persistence.
 2. Search for a KPI such as **Security Queue Wait Time**, open it, and inspect its definition, source, and detail table.
 3. Open **Edit layout**, drag a card, resize it from an edge or corner, set another card to full width, and save.
