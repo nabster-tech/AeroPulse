@@ -19,7 +19,7 @@ export function PreferencesSettings() {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="settings-overlay" />
-        <Dialog.Content className="settings-dialog">
+        <Dialog.Content className="settings-dialog" aria-describedby={undefined}>
           <header className="settings-heading">
             <Dialog.Title>Preferences</Dialog.Title>
             <Dialog.Close asChild>
@@ -28,22 +28,14 @@ export function PreferencesSettings() {
               </button>
             </Dialog.Close>
           </header>
-          <Dialog.Description className="settings-description">
-            Customize your workspace. Changes apply immediately.
-          </Dialog.Description>
-          <section className="settings-field">
-            <h3>Appearance</h3>
-            <p>Choose a theme or follow your device.</p>
+          <div className="settings-field">
+            <span>Theme</span>
             <ThemeSelector />
-          </section>
-          <section className="settings-field">
-            <h3>Currency</h3>
-            <p>Choose the display currency for monetary values.</p>
+          </div>
+          <div className="settings-field">
+            <span>Currency</span>
             <PresentationControls />
-          </section>
-          <p className="settings-hint">
-            Click the toolbar clock to switch between local time and UTC.
-          </p>
+          </div>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
