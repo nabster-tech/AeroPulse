@@ -31,18 +31,10 @@
   border-radius: 8px;
   background: transparent;
   color: inherit;
-  transition:
-    background-color 0.15s,
-    border-color 0.15s,
-    box-shadow 0.15s;
 }
 .toolbar-clock:hover {
   background: var(--surface);
-  border-color: transparent;
-  box-shadow: 0 3px 12px #0003;
-}
-.toolbar-clock:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 20%, transparent);
+  border-color: var(--border);
 }
 .toolbar-clock time {
   display: grid;
