@@ -48,3 +48,48 @@ test('theme synchronization stays active while settings are closed', async ({ pa
   await page.getByRole('button', { name: 'Open settings' }).click();
   await expect(page.getByRole('combobox', { name: 'Color theme' })).toHaveValue('dark');
 });
+
+test('open selection drawers use the active theme and remain within the viewport', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [value, background] of [
+    ['dark', 'rgb(23, 35, 52)'],
+    ['light', 'rgb(255, 255, 255)'],
+  ] as const) {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Open settings' }).click();
+    const theme = page.getByRole('combobox', { name: 'Color theme' });
+    const supported = await theme.evaluate(() => CSS.supports('appearance', 'base-select'));
+    await theme.selectOption(value);
+    await theme.click();
+    await expect(theme).toBeVisible();
+    if (supported) {
+      expect(await theme.evaluate((node) => node.matches(':open'))).toBe(true);
+      expect(
+        await theme.evaluate((node) => getComputedStyle(node, '::picker(select)').backgroundColor),
+      ).toBe(background);
+      expect(
+        await theme.evaluate((node) => getComputedStyle(node, '::picker(select)').fontFamily),
+      ).toContain('Inter Variable');
+      expect(
+        await theme.evaluate(
+          (node) => getComputedStyle(node.querySelector('option:checked')!).backgroundColor,
+        ),
+      ).not.toBe('rgba(0, 0, 0, 0)');
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+      390,
+    );
+  }
+  await page.goto('/');
+  const timeWindow = page.getByRole('combobox', { name: 'Time window' });
+  await timeWindow.click();
+  if (await timeWindow.evaluate(() => CSS.supports('appearance', 'base-select'))) {
+    expect(
+      await timeWindow.evaluate(
+        (node) => getComputedStyle(node, '::picker(select)').backgroundColor,
+      ),
+    ).toBe('rgb(255, 255, 255)');
+  }
+});

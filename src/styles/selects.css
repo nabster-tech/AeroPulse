@@ -1,0 +1,60 @@
+/* Browsers without customizable selects keep their native, accessible picker. */
+@supports (appearance: base-select) {
+  select:not([multiple]),
+  select:not([multiple])::picker(select) {
+    appearance: base-select;
+  }
+
+  select:not([multiple]) {
+    cursor: pointer;
+  }
+
+  select:not([multiple])::picker-icon {
+    color: var(--muted);
+    transition: transform 150ms ease;
+  }
+
+  select:not([multiple]):open::picker-icon {
+    transform: rotate(180deg);
+  }
+
+  select:not([multiple])::picker(select) {
+    max-height: min(320px, calc(100dvh - 24px));
+    overflow-y: auto;
+    margin-block: 5px;
+    padding: 6px;
+    border: 1px solid var(--tooltip-border);
+    border-radius: 10px;
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    box-shadow: 0 16px 40px #0006;
+    font-family: var(--font-sans);
+    font-size: var(--text-control);
+  }
+
+  select:not([multiple]) option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--tooltip-text);
+  }
+
+  select:not([multiple]) option:hover,
+  select:not([multiple]) option:focus-visible {
+    background: color-mix(in srgb, var(--teal) 15%, var(--surface));
+  }
+
+  select:not([multiple]) option:checked {
+    background: color-mix(in srgb, var(--teal) 22%, var(--surface));
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  select:not([multiple]) option::checkmark {
+    color: var(--teal);
+  }
+}

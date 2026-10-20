@@ -3,6 +3,7 @@
 @import './styles/shell.css';
 @import './styles/widgets.css';
 @import './styles/overlays.css';
+@import './styles/selects.css';
 @theme {
   --color-aviation: #55d9bd;
 }
