@@ -10,6 +10,8 @@ import {
   Grip,
   Menu as MenuIcon,
   Navigation,
+  PanelLeftClose,
+  PanelLeftOpen,
   Plus,
   Save,
   Search,
@@ -33,6 +35,7 @@ import { useCategoryWorkspace } from './workspace';
 import { CategoryGrid, KpiFocus, restoreKpi } from './CategoryGrid';
 import { exportRows } from './views';
 import { useDesktop } from '../components/useDesktop';
+import { useSidebarPreference } from '../components/useSidebarPreference';
 import { ToolbarClock } from '../components/ToolbarClock';
 import './categories.css';
 import '../components/toolbar-clock.css';
@@ -55,6 +58,7 @@ export default function CategoryApp() {
   } | null>(null);
   const pendingFocus = useRef<KpiId | null>(null);
   const desktop = useDesktop();
+  const { collapsed: sidebarCollapsed, toggle: toggleSidebar } = useSidebarPreference();
   const state = useCategoryWorkspace(),
     doc = state.drafts[category] ?? state.documents[category],
     editing = Boolean(state.drafts[category]);
@@ -257,19 +261,29 @@ export default function CategoryApp() {
     );
   };
   return (
-    <div className="app-shell category-app">
+    <div
+      className={`app-shell category-app${desktop && sidebarCollapsed ? ' navigation-collapsed' : ''}`}
+    >
       <a className="skip-link" href="#main-content">
         Skip to dashboard
       </a>
       {desktop ? (
-        <aside className="sidebar category-sidebar" aria-label="KPI categories">
+        <aside
+          id="desktop-kpi-navigation"
+          className="sidebar category-sidebar"
+          aria-label="KPI categories"
+          hidden={sidebarCollapsed}
+        >
           {sidebar}
         </aside>
       ) : (
         <Dialog.Root open={mobileOpen} onOpenChange={setMobileOpen}>
           <Dialog.Portal>
             <Dialog.Overlay className="dialog-overlay" />
-            <Dialog.Content className="sidebar category-sidebar mobile-category-sidebar">
+            <Dialog.Content
+              id="mobile-kpi-navigation"
+              className="sidebar category-sidebar mobile-category-sidebar"
+            >
               <Dialog.Title className="sr-only">KPI categories</Dialog.Title>
               <Dialog.Description className="sr-only">
                 Choose a category or search for a KPI.
@@ -287,15 +301,46 @@ export default function CategoryApp() {
       <div className="main-shell">
         <header className="topbar">
           <div className="topbar-primary">
-            {!desktop && (
-              <button
-                className="icon-button"
-                aria-label="Open KPI categories"
-                onClick={() => setMobileOpen(true)}
-              >
+            <button
+              type="button"
+              className="icon-button navigation-toggle"
+              aria-label={
+                desktop
+                  ? sidebarCollapsed
+                    ? 'Show sidebar'
+                    : 'Hide sidebar'
+                  : 'Open KPI categories'
+              }
+              title={
+                desktop
+                  ? sidebarCollapsed
+                    ? 'Show sidebar'
+                    : 'Hide sidebar'
+                  : 'Open KPI categories'
+              }
+              aria-expanded={desktop ? !sidebarCollapsed : mobileOpen}
+              aria-controls={
+                desktop
+                  ? 'desktop-kpi-navigation'
+                  : mobileOpen
+                    ? 'mobile-kpi-navigation'
+                    : undefined
+              }
+              onClick={() => {
+                if (desktop) toggleSidebar();
+                else setMobileOpen(true);
+              }}
+            >
+              {desktop ? (
+                sidebarCollapsed ? (
+                  <PanelLeftOpen size={20} />
+                ) : (
+                  <PanelLeftClose size={20} />
+                )
+              ) : (
                 <MenuIcon size={20} />
-              </button>
-            )}
+              )}
+            </button>
             <span className="breadcrumb">
               <span className="breadcrumb-root">KPI Categories</span>
               <span className="breadcrumb-separator">/</span>

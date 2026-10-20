@@ -4,7 +4,7 @@ This script is designed for an eight-minute presentation of the deployed proof o
 
 ## Before the meeting
 
-1. Open the [deployed dashboard](https://nabster-tech.github.io/AeroPulse/) in Chrome or Edge at 100% zoom. A viewport near 1440 × 900 works well.
+1. Open the [deployed dashboard](https://nabster-tech.github.io/AeroPulse/) in Chrome or Edge at 100% zoom. A viewport near 1440 × 900 works well. If navigation is hidden, select **Show sidebar** in the toolbar.
 2. Select **Dark** from the theme selector. If the centered clock shows **UTC**, click it once to show local **IST** time.
 3. Open **Airside Operations**, select **Reset filters**, then choose **Edit layout → Reset layout → Save layout**. Repeat the layout reset for **Passenger Flow** if it was changed during rehearsal.
 4. Confirm that the browser permits downloads. The demo exports CSV files locally and sends nothing to an external service.
