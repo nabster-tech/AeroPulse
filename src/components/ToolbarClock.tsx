@@ -3,7 +3,7 @@ import { airport } from '../categories/airport';
 import { usePresentation } from '../presentation';
 
 export function ToolbarClock() {
-  const { localAndUtc } = usePresentation();
+  const { localAndUtc, toggleTimeZones } = usePresentation();
   const [now, setNow] = useState(() => new Date());
   const timeZone = localAndUtc ? 'UTC' : airport.timeZone;
   const zoneLabel = localAndUtc ? 'UTC' : airport.timeZoneAbbreviation;
@@ -32,17 +32,19 @@ export function ToolbarClock() {
   }, []);
 
   return (
-    <div
+    <button
+      type="button"
       className="toolbar-clock"
-      role="timer"
-      aria-label={`Current ${localAndUtc ? 'UTC' : 'airport local'} time`}
+      aria-label="Show UTC"
+      aria-pressed={localAndUtc}
       aria-live="off"
-      title={`Live clock · ${localAndUtc ? 'UTC' : `${airport.name} (${airport.timeZone})`}`}
+      title={`Showing ${localAndUtc ? 'UTC' : `${airport.name} local time (${zoneLabel})`}. Click to switch to ${localAndUtc ? 'local time' : 'UTC'}.`}
+      onClick={toggleTimeZones}
     >
       <time dateTime={now.toISOString()}>
         <span className="toolbar-clock-time">{formatter.format(now)}</span>
         <span className="toolbar-clock-zone">{zoneLabel}</span>
       </time>
-    </div>
+    </button>
   );
 }

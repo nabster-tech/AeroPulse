@@ -7,20 +7,24 @@ test('live clock ticks, rolls over at local midnight and follows the saved timez
   await page.clock.install({ time: instant });
   await page.clock.pauseAt(instant);
   await page.goto('/');
-  const clock = page.getByRole('timer');
-  await expect(clock).toHaveAccessibleName('Current airport local time');
+  const clock = page.getByRole('button', { name: 'Show UTC' });
+  await expect(clock).toHaveAttribute('aria-pressed', 'false');
   await expect(clock).toHaveText(/^23:59:59\s*IST$/);
   await page.clock.runFor(1000);
   await expect(clock).toHaveText(/^00:00:00\s*IST$/);
-  await page.getByRole('button', { name: 'Show UTC' }).click();
-  await expect(clock).toHaveAccessibleName('Current UTC time');
+  await clock.click();
+  await expect(clock).toHaveAttribute('aria-pressed', 'true');
   await expect(clock).toHaveText(/^18:30:00\s*UTC$/);
   await expect(clock.locator('time')).toHaveAttribute('datetime', '2026-10-20T18:30:00.000Z');
   await page.reload();
-  await expect(clock).toHaveAccessibleName('Current UTC time');
-  await page.getByRole('button', { name: 'IST + UTC' }).click();
-  await expect(clock).toHaveAccessibleName('Current airport local time');
+  await expect(clock).toHaveAttribute('aria-pressed', 'true');
+  await clock.focus();
+  await page.keyboard.press('Space');
+  await expect(clock).toHaveAttribute('aria-pressed', 'false');
   await expect(clock).toContainText('00:00:00');
+  await page.keyboard.press('Enter');
+  await expect(clock).toHaveAttribute('aria-pressed', 'true');
+  await expect(clock).toContainText('18:30:00');
   await expect(page.locator('.page-footer')).toContainText('17 Sep 2026');
 });
 
@@ -28,7 +32,7 @@ test('clock stays centered, visible and clear of controls across breakpoints', a
   await page.goto('/');
   for (const width of [320, 390, 700, 768, 1100, 1399, 1400, 1440, 1600, 1920]) {
     await page.setViewportSize({ width, height: 900 });
-    const clock = page.getByRole('timer');
+    const clock = page.getByRole('button', { name: 'Show UTC' });
     await expect(clock).toBeVisible();
     const bounds = await clock.boundingBox();
     const toolbar = await page.locator('.topbar').boundingBox();
@@ -39,17 +43,19 @@ test('clock stays centered, visible and clear of controls across breakpoints', a
     ).toBeLessThan(2);
     const overlaps = await page.locator('.topbar').evaluate((bar) => {
       const clockRect = bar.querySelector('.toolbar-clock')!.getBoundingClientRect();
-      return [...bar.querySelectorAll('button, select, .breadcrumb')].some((node) => {
-        const rect = node.getBoundingClientRect();
-        return (
-          rect.width > 0 &&
-          rect.height > 0 &&
-          rect.left < clockRect.right &&
-          rect.right > clockRect.left &&
-          rect.top < clockRect.bottom &&
-          rect.bottom > clockRect.top
-        );
-      });
+      return [...bar.querySelectorAll('button:not(.toolbar-clock), select, .breadcrumb')].some(
+        (node) => {
+          const rect = node.getBoundingClientRect();
+          return (
+            rect.width > 0 &&
+            rect.height > 0 &&
+            rect.left < clockRect.right &&
+            rect.right > clockRect.left &&
+            rect.top < clockRect.bottom &&
+            rect.bottom > clockRect.top
+          );
+        },
+      );
     });
     expect(overlaps, `toolbar controls overlap the clock at ${width}px`).toBe(false);
     await page.evaluate(() => window.scrollTo(0, 700));

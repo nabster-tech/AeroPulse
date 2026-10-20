@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { Clock3 } from 'lucide-react';
 import { airport, storageKeys } from './categories/airport';
 
 export type Currency = 'EUR' | 'USD' | 'INR';
@@ -168,16 +167,6 @@ export function PresentationControls() {
           <option value="INR">INR ₹</option>
         </select>
       </label>
-      <button
-        type="button"
-        className="secondary-button timezone-button"
-        aria-pressed={view.localAndUtc}
-        title="Switch the live clock between airport local time and UTC; show both zones in data labels"
-        onClick={view.toggleTimeZones}
-      >
-        <Clock3 size={14} />
-        <span>{view.localAndUtc ? 'IST + UTC' : 'Show UTC'}</span>
-      </button>
     </div>
   );
 }

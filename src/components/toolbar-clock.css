@@ -23,6 +23,15 @@
   display: flex;
   align-items: center;
   text-align: center;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+}
+.toolbar-clock:hover {
+  background: var(--surface);
+  border-color: var(--border);
 }
 .toolbar-clock time {
   display: grid;

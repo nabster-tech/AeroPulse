@@ -5,7 +5,7 @@ This script is designed for an eight-minute presentation of the deployed proof o
 ## Before the meeting
 
 1. Open the [deployed dashboard](https://nabster-tech.github.io/AeroPulse/) in Chrome or Edge at 100% zoom. A viewport near 1440 × 900 works well.
-2. Select **Dark** from the theme selector and turn **IST + UTC** off so the button reads **Show UTC**.
+2. Select **Dark** from the theme selector. If the centered clock shows **UTC**, click it once to show local **IST** time.
 3. Open **Airside Operations**, select **Reset filters**, then choose **Edit layout → Reset layout → Save layout**. Repeat the layout reset for **Passenger Flow** if it was changed during rehearsal.
 4. Confirm that the browser permits downloads. The demo exports CSV files locally and sends nothing to an external service.
 5. Keep this script open on a second screen. If the hosted site is unavailable, run `npm ci` followed by `npm run dev` from the project directory and use the URL printed by Vite.
@@ -92,7 +92,7 @@ If dragging feels awkward during the live presentation, use **Full width**, **Ta
 
 ### 5:15–6:05 — Show presentation controls
 
-**Action:** Select **Light**, then return to **Dark**. Select **Show UTC**.
+**Action:** Select **Light**, then return to **Dark**. Click the centered clock to switch from **IST** to **UTC**.
 
 **Say:**
 

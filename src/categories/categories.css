@@ -307,8 +307,7 @@
     padding-top: 9px;
     border-top: 1px solid #263145;
   }
-  .category-app .topbar-right select,
-  .category-app .timezone-button {
+  .category-app .topbar-right select {
     min-height: 44px;
   }
   .category-app .category-demo-badge {
