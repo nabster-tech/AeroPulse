@@ -1,4 +1,4 @@
-# Implementation decisions
+# AeroPulse: implementation decisions
 
 ## Catalog and navigation
 
@@ -11,6 +11,8 @@ Global search uses the same catalog and opens a KPI in the correct category. Unk
 Static fixture families model related flights, resources, stands, safety events, weather observations, passenger flows, and operational exercises. A category source resolves filters, calculates observations, and creates chart, matrix, event, report, or scenario view models. Requests accept an `AbortSignal`, and TanStack Query keys include category, filter, and definition version.
 
 `airport.ts` owns the PoC airport identity, IANA timezone, fixture timestamps, base currency, and browser preference keys. `filters.ts` validates and stores complete filter selections per category, while `workspace.ts` owns only layout documents and drafts. These are browser adapters for the PoC; production configuration and user preferences must come from authenticated services.
+
+The AeroPulse rename preserves the original `airside.*` browser storage keys as compatibility identifiers so saved layouts, filters, themes, and presentation preferences remain available on the same origin. Operational category names and IDs also remain stable because they belong to the KPI requirements rather than the product brand.
 
 Each KPI specification carries a provisional formula, source, target, caveat, and version. Rates derive from numerator and denominator records, weighted measures retain their sample count, and unavailable values remain distinct from zero. The UI exposes these details in every focus dialog.
 

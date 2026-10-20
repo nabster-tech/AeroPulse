@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
 type ThemePreference = 'light' | 'dark' | 'system';
+// Retain the original key to preserve appearance preferences after the AeroPulse rename.
 const storageKey = 'airside.theme.v1';
 const isPreference = (value: unknown): value is ThemePreference =>
   value === 'light' || value === 'dark' || value === 'system';

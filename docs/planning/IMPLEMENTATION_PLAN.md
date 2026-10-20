@@ -1,4 +1,4 @@
-# Airport Operations Analytics: implementation plan
+# AeroPulse: implementation plan
 
 Planning baseline: 17 September 2026. This is a proposed delivery plan, not an implemented or tested application.
 

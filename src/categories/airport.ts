@@ -11,6 +11,7 @@ export const airport = {
   fixtureVersion: 'category-demo-v2',
 } as const;
 
+// Keep the original storage namespace so the AeroPulse rename preserves saved preferences.
 export const storageKeys = {
   layouts: `airside.categories.${airport.id}.v2`,
   legacyLayouts: `airside.workspace.${airport.id}.v1`,

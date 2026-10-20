@@ -1,4 +1,4 @@
-# Airport Operations Dashboard — architecture, UI, and test review
+# AeroPulse — architecture, UI, and test review
 
 Review date: 19 September 2026  
 Reviewed baseline: local `main` at `f2d14ba`  

@@ -1,4 +1,4 @@
-# KPI categories implementation plan
+# AeroPulse: KPI categories implementation plan
 
 Prepared: 18 September 2026. Source: `airport-operations-planning/kpi_list`, archived unchanged as [KPI_REQUIREMENTS.tsv](KPI_REQUIREMENTS.tsv).
 

@@ -1,4 +1,4 @@
-# Airport Operations Analytics: refined planning prompt
+# AeroPulse: refined planning prompt
 
 Use this prompt to commission a detailed implementation plan. It deliberately separates a demonstrable PoC from the work required for production deployment.
 

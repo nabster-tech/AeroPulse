@@ -1,4 +1,4 @@
-# Airport Operations Dashboard — technology stack
+# AeroPulse — technology stack
 
 This document describes the technology used by the current proof of concept, where each tool is used, and which parts are expected to change for production. Dependency versions are pinned in `package.json` and `package-lock.json`.
 
@@ -83,7 +83,7 @@ Firefox, WebKit, manual assistive-technology review, production integration fail
 
 ## Build and deployment
 
-Vite creates a static production bundle in `dist/`. The build separates React, charting, and general workspace dependencies into vendor chunks. When GitHub Actions runs the build, Vite uses `/airport-operations-dashboard/` as the base path required by GitHub Pages.
+Vite creates a static production bundle in `dist/`. The build separates React, charting, and general workspace dependencies into vendor chunks. When GitHub Actions runs the build, Vite derives the Pages base path from `GITHUB_REPOSITORY`, currently `/AeroPulse/`, with `/AeroPulse/` as the fallback. Local development uses `/`.
 
 The Pages workflow performs these steps on each push to `main`:
 

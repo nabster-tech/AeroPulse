@@ -1,4 +1,6 @@
-# Airside · Airport operations
+# AeroPulse · Airport operations
+
+[Live dashboard](https://nabster-tech.github.io/AeroPulse/) · [GitHub repository](https://github.com/nabster-tech/AeroPulse)
 
 A React and TypeScript proof of concept for an airport operations analytics workspace. It implements all **71 requested KPIs** across **11 operational categories** using a coherent static dataset fixed to **17 September 2026, 14:00 IST**. The data boundary is asynchronous and replaceable, so production APIs can be introduced without rewriting the category views.
 

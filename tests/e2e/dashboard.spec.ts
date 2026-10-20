@@ -5,6 +5,8 @@ import { categories, categoryEntries } from '../../src/categories/catalog';
 import { storageKeys } from '../../src/categories/airport';
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
+  await expect(page).toHaveTitle('AeroPulse · Airport operations');
+  await expect(page.locator('.brand')).toContainText('AeroPulse');
   await expect(page.locator('.kpi-card')).toHaveCount(9);
 });
 test('all eleven categories show exactly their registered KPIs and preserve browser navigation', async ({

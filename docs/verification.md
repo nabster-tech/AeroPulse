@@ -1,4 +1,4 @@
-# Verification record
+# AeroPulse: verification record
 
 Verified on 19 September 2026 on Windows with Node 24 and Chromium.
 

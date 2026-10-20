@@ -119,7 +119,7 @@ export default function CategoryApp() {
           <Navigation size={24} fill="currentColor" />
         </span>
         <span>
-          airside<span className="brand-period">.</span>
+          AeroPulse<span className="brand-period">.</span>
         </span>
       </a>
       <div className="airport-selector">
