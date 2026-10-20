@@ -85,15 +85,6 @@ svg {
 .muted {
   color: var(--muted);
 }
-.small {
-  font-size: 11px;
-}
-.center {
-  text-align: center;
-}
-.text-amber {
-  color: var(--amber);
-}
 .skip-link {
   position: fixed;
   left: 20px;

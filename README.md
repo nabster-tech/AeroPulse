@@ -49,6 +49,10 @@ The production build is emitted to `dist/`. Runtime data, fonts, and icons are b
 
 The PoC intentionally uses static data and provisional KPI definitions. The source timestamp and demo status remain visible in the interface. The exact requirements archive and delivery plan are in [`docs/planning`](docs/planning).
 
+The proposed [custom dashboards implementation plan](docs/planning/CUSTOM_DASHBOARDS_IMPLEMENTATION_PLAN.md) describes personal dashboards that combine KPIs across categories, including UX, architectural changes, tradeoffs, testing, and the production extension path.
+
+To prepare integration with AOS and real data feeds, give the AOS project-aware agent the [live backend discovery questionnaire](docs/planning/LIVE_BACKEND_DISCOVERY_QUESTIONNAIRE.md). It includes AOS-specific architecture questions, the full KPI inventory, evidence requirements, and the questions needed to define the backend and production integration.
+
 ## Five-minute demonstration
 
 For a presenter-ready walkthrough with exact actions, speaking notes, a three-minute cutdown, likely questions, and recovery steps, use the [team demo script](docs/DEMO_SCRIPT.md).

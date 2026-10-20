@@ -82,13 +82,6 @@ export interface CategorySnapshot {
   version: string;
   metrics: KpiResult[];
 }
-export function timeLabel(minute: number) {
-  return (
-    String(Math.floor(minute / 60)).padStart(2, '0') +
-    ':' +
-    String(Math.floor(minute % 60)).padStart(2, '0')
-  );
-}
 export function windowStart(range: CategoryFilters['range']) {
   return range === 'hour' ? 780 : range === 'six' ? 480 : 0;
 }

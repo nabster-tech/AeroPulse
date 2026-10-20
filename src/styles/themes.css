@@ -53,7 +53,7 @@
   --tooltip-text: #172b45;
   --tooltip-border: #b8c7d8;
 }
-[data-theme='light'] :is(.sidebar, .topbar, .focus-dialog, .menu-content, .about-dialog) {
+[data-theme='light'] :is(.sidebar, .topbar, .focus-dialog, .menu-content) {
   background: var(--surface);
   border-color: var(--border);
 }
@@ -69,8 +69,6 @@
     .category-search,
     .secondary-button,
     .focus-chart,
-    .close-focus,
-    .segmented,
     .kpi-search-results
   ) {
   background: #edf2f8;
@@ -115,10 +113,8 @@
     .metric-subtitle,
     .card-footer,
     .static-mark,
-    .metric-unavailable .metric-number,
     .empty-metric,
     .empty-dashboard,
-    .menu-label,
     .focus-description,
     .select-label,
     .detail-table-heading > span,
@@ -133,7 +129,7 @@
 [data-theme='light'] .category-search input::placeholder {
   color: #52647b;
 }
-[data-theme='light'] :is(.airport-code, .nav-count, .segmented button[aria-pressed='true']) {
+[data-theme='light'] :is(.airport-code, .nav-item .nav-count) {
   background: #dfe8f3;
   color: #334e70;
 }
@@ -149,7 +145,7 @@
   color: #172b45;
   border-color: #9aacbf;
 }
-[data-theme='light'] :is(.text-button:hover, .segmented button:hover) {
+[data-theme='light'] :is(.text-button:hover) {
   color: #172b45;
 }
 [data-theme='light'] :is(.nav-item.active, .edit-toolbar, .category-matrix > div) {
@@ -158,12 +154,7 @@
   color: #096a59;
 }
 [data-theme='light']
-  :is(
-    .nav-item.active .nav-count,
-    .category-sidebar-footer,
-    .edit-toolbar strong,
-    .metric-comparison.good
-  ) {
+  :is(.nav-item.active .nav-count, .category-sidebar-footer, .edit-toolbar strong) {
   color: #096a59;
 }
 [data-theme='light'] .edit-toolbar div > div > span {
@@ -176,10 +167,10 @@
   background: #086654;
   border-color: #086654;
 }
-[data-theme='light'] :is(.draft-indicator, .metric-comparison.warning) {
+[data-theme='light'] .category-app .draft-indicator {
   color: #865600;
 }
-[data-theme='light'] :is(.danger-item, .metric-comparison.danger) {
+[data-theme='light'] .menu-item.danger-item {
   color: #b32640;
 }
 [data-theme='light'] :is(.notice, .scenario-note) {
@@ -210,9 +201,6 @@
 }
 [data-theme='light'] .data-table-wrap tr:hover td {
   background: #eaf2fc;
-}
-[data-theme='light'] .menu-separator {
-  background: var(--border);
 }
 [data-theme='light'] .dialog-overlay {
   background: #18283d66;

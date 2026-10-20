@@ -10,12 +10,6 @@
   z-index: 100;
   animation: enter 0.12s ease-out;
 }
-.menu-label {
-  font-size: 8px;
-  letter-spacing: 1.4px;
-  color: #a0b0c9;
-  padding: 8px 9px 5px;
-}
 .menu-item {
   display: flex;
   align-items: center;
@@ -34,15 +28,6 @@
 .menu-item[data-disabled] {
   opacity: 0.5;
   cursor: default;
-}
-.menu-check {
-  margin-left: auto;
-  color: var(--teal);
-}
-.menu-separator {
-  height: 1px;
-  background: #37475e;
-  margin: 5px;
 }
 .danger-item {
   color: #ffacb5;
@@ -87,11 +72,6 @@
 }
 .focus-heading h2 > svg {
   color: var(--teal);
-}
-.close-focus {
-  height: 36px;
-  width: 36px;
-  background: #253347;
 }
 .focus-description {
   font-size: 11px;
@@ -138,27 +118,6 @@
   border: 1px solid #283a52;
   border-radius: 9px;
 }
-.focus-chart .gate-matrix {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-.focus-chart .queue-list {
-  padding: 5px 18px;
-}
-.focus-chart .cargo-visual {
-  padding: 10px 20px;
-}
-.focus-chart .parking-visual {
-  justify-content: center;
-  padding: 10px 40px;
-  gap: 45px;
-}
-.focus-chart .parking-chart {
-  width: 180px;
-  height: 180px;
-}
-.focus-chart .parking-rows {
-  max-width: 500px;
-}
 .detail-table-heading {
   display: flex;
   justify-content: space-between;
@@ -193,34 +152,6 @@
   align-items: center;
   gap: 6px;
 }
-.about-dialog {
-  position: fixed;
-  z-index: 80;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(480px, calc(100vw - 36px));
-  padding: 30px;
-  border: 1px solid #3d506e;
-  background: #172235;
-  border-radius: 12px;
-  box-shadow: 0 30px 90px #000a;
-}
-.about-dialog h2 {
-  font-size: 23px;
-  margin-bottom: 16px;
-}
-.about-dialog p {
-  font-size: 13px;
-  line-height: 1.8;
-  color: #b8c7dc;
-  margin-bottom: 18px;
-}
-.focus-loading {
-  padding: 60px;
-  text-align: center;
-  color: #b6c5db;
-}
 @media (max-width: 700px) {
   .focus-dialog {
     width: calc(100vw - 20px);
@@ -246,20 +177,6 @@
   }
   .focus-chart {
     height: 240px;
-  }
-  .focus-chart .gate-matrix {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-  .focus-chart .parking-visual {
-    padding: 8px;
-    gap: 15px;
-  }
-  .focus-chart .parking-chart {
-    width: 100px;
-    height: 120px;
-  }
-  .focus-chart .flight-direction-values {
-    gap: 50px;
   }
   .focus-footer {
     font-size: 8px;
