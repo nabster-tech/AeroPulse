@@ -1,0 +1,19 @@
+@theme static {
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --text-control: 0.8125rem;
+  --text-control--line-height: 1.5;
+}
+
+:root {
+  font-family: var(--font-sans);
+}
+
+:where(button, input, textarea, select, optgroup, option) {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+::file-selector-button {
+  font: inherit;
+  letter-spacing: inherit;
+}

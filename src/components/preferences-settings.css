@@ -42,12 +42,14 @@
   align-items: center;
   gap: 8px;
   padding: 4px 0;
-  font-size: 13px;
+  font-size: var(--text-control);
+  line-height: var(--text-control--line-height);
 }
 .settings-dialog :is(.theme-selector, .currency-control) select {
   width: 120px;
   min-height: 44px;
-  font-size: 12px;
+  font-size: var(--text-control);
+  line-height: var(--text-control--line-height);
 }
 .settings-dialog .theme-notice {
   position: static;

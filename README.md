@@ -10,6 +10,8 @@ The dashboard uses **React 19**, **TypeScript 6**, and **Vite 8**, with **Tailwi
 
 See the complete [technology stack reference](docs/TECH_STACK.md), including architecture, tool responsibilities, testing, deployment, and the production integration path.
 
+Inter Variable and shared control typography are defined globally for existing and new UI. See the [typography conventions](docs/TYPOGRAPHY.md).
+
 ## Run locally
 
 Use Node.js 24 LTS and npm.
