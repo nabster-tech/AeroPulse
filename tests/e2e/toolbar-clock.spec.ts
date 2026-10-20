@@ -9,15 +9,12 @@ test('live clock ticks, rolls over at local midnight and follows the saved timez
   await page.goto('/');
   const clock = page.getByRole('timer');
   await expect(clock).toHaveAccessibleName('Current airport local time');
-  await expect(clock).toContainText('23:59:59');
-  await expect(clock).toContainText('20 Oct 2026');
+  await expect(clock).toHaveText(/^23:59:59\s*IST$/);
   await page.clock.runFor(1000);
-  await expect(clock).toContainText('00:00:00');
-  await expect(clock).toContainText('21 Oct 2026');
+  await expect(clock).toHaveText(/^00:00:00\s*IST$/);
   await page.getByRole('button', { name: 'Show UTC' }).click();
   await expect(clock).toHaveAccessibleName('Current UTC time');
-  await expect(clock).toContainText('18:30:00');
-  await expect(clock).toContainText('20 Oct 2026');
+  await expect(clock).toHaveText(/^18:30:00\s*UTC$/);
   await expect(clock.locator('time')).toHaveAttribute('datetime', '2026-10-20T18:30:00.000Z');
   await page.reload();
   await expect(clock).toHaveAccessibleName('Current UTC time');

@@ -42,13 +42,6 @@
   font-weight: 650;
   color: var(--teal);
 }
-.toolbar-clock-date {
-  grid-column: 1 / -1;
-  margin-top: 3px;
-  font-size: 10px;
-  color: var(--muted);
-  white-space: nowrap;
-}
 @media (max-width: 1399px) {
   .category-app .topbar {
     height: auto;

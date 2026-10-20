@@ -7,22 +7,15 @@ export function ToolbarClock() {
   const [now, setNow] = useState(() => new Date());
   const timeZone = localAndUtc ? 'UTC' : airport.timeZone;
   const zoneLabel = localAndUtc ? 'UTC' : airport.timeZoneAbbreviation;
-  const formatters = useMemo(
-    () => ({
-      time: new Intl.DateTimeFormat('en-GB', {
+  const formatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat('en-GB', {
         timeZone,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
         hourCycle: 'h23',
       }),
-      date: new Intl.DateTimeFormat('en-GB', {
-        timeZone,
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      }),
-    }),
     [timeZone],
   );
 
@@ -47,11 +40,8 @@ export function ToolbarClock() {
       title={`Live clock · ${localAndUtc ? 'UTC' : `${airport.name} (${airport.timeZone})`}`}
     >
       <time dateTime={now.toISOString()}>
-        <span className="toolbar-clock-time">{formatters.time.format(now)}</span>
+        <span className="toolbar-clock-time">{formatter.format(now)}</span>
         <span className="toolbar-clock-zone">{zoneLabel}</span>
-        <span className="toolbar-clock-date">
-          {formatters.date.format(now)} · {localAndUtc ? 'UTC' : 'Local'}
-        </span>
       </time>
     </div>
   );
