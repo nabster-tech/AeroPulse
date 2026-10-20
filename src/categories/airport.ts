@@ -17,5 +17,4 @@ export const storageKeys = {
   legacyLayouts: `airside.workspace.${airport.id}.v1`,
   filters: `airside.filters.${airport.id}.v1`,
   presentation: `airside.presentation.${airport.id}.v1`,
-  sidebar: `airside.sidebar.${airport.id}.v1`,
 } as const;
