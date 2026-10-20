@@ -5,7 +5,7 @@ This script is designed for an eight-minute presentation of the deployed proof o
 ## Before the meeting
 
 1. Open the [deployed dashboard](https://nabster-tech.github.io/AeroPulse/) in Chrome or Edge at 100% zoom. A viewport near 1440 × 900 works well. If navigation is hidden, select **Show sidebar** in the toolbar.
-2. Select **Dark** from the theme selector. If the centered clock shows **UTC**, click it once to show local **IST** time.
+2. Open the toolbar gear (**Open settings**), select **Dark**, and close Preferences. If the centered clock shows **UTC**, click it once to show local **IST** time.
 3. Open **Airside Operations**, select **Reset filters**, then choose **Edit layout → Reset layout → Save layout**. Repeat the layout reset for **Passenger Flow** if it was changed during rehearsal.
 4. Confirm that the browser permits downloads. The demo exports CSV files locally and sends nothing to an external service.
 5. Keep this script open on a second screen. If the hosted site is unavailable, run `npm ci` followed by `npm run dev` from the project directory and use the URL printed by Vite.
@@ -92,13 +92,13 @@ If dragging feels awkward during the live presentation, use **Full width**, **Ta
 
 ### 5:15–6:05 — Show presentation controls
 
-**Action:** Select **Light**, then return to **Dark**. Click the centered clock to switch from **IST** to **UTC**.
+**Action:** Open the toolbar gear, select **Light**, then return to **Dark**. Close Preferences and click the centered clock to switch from **IST** to **UTC**.
 
 **Say:**
 
 > Light, dark, and system themes are available, and the preference persists between visits. Airport timelines use local IST by default. The UTC option shows both clocks and makes the UTC date explicit when the two zones fall on different calendar days.
 
-**Action:** Open the currency selector and briefly show EUR, USD, and INR. Leave it on EUR.
+**Action:** Open the toolbar gear and show the currency selector with EUR, USD, and INR. Leave it on EUR and close Preferences.
 
 > The presentation layer also supports EUR, USD, and INR. The current 71 operational KPIs do not contain monetary units, so switching currency correctly leaves these values unchanged. When commercial metrics are added, production will need an approved exchange-rate source and effective timestamp rather than the illustrative proof-of-concept rates.
 

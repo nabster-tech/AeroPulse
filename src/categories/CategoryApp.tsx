@@ -39,8 +39,8 @@ import { useSidebarPreference } from '../components/useSidebarPreference';
 import { ToolbarClock } from '../components/ToolbarClock';
 import './categories.css';
 import '../components/toolbar-clock.css';
-import { ThemeSelector } from '../theme';
-import { PresentationControls, usePresentation } from '../presentation';
+import { usePresentation } from '../presentation';
+import { PreferencesSettings } from '../components/PreferencesSettings';
 export default function CategoryApp() {
   const { category, invalid } = useCategoryRoute();
   const presentation = usePresentation();
@@ -350,8 +350,7 @@ export default function CategoryApp() {
           <ToolbarClock />
           <div className="topbar-right">
             <span className="category-demo-badge">STATIC DEMO</span>
-            <PresentationControls />
-            <ThemeSelector />
+            <PreferencesSettings />
           </div>
         </header>
         <main id="main-content" tabIndex={-1}>

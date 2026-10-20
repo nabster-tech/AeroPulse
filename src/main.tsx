@@ -8,7 +8,7 @@ import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import './styles.css';
 import './styles/themes.css';
-import { initializeTheme } from './theme';
+import { initializeTheme, ThemeProvider } from './theme';
 import { PresentationProvider } from './presentation';
 class AppErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -34,12 +34,14 @@ const queryClient = new QueryClient();
 initializeTheme();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <PresentationProvider>
-      <AppErrorBoundary>
-        <QueryClientProvider client={queryClient}>
-          <App />
-        </QueryClientProvider>
-      </AppErrorBoundary>
-    </PresentationProvider>
+    <ThemeProvider>
+      <PresentationProvider>
+        <AppErrorBoundary>
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
+        </AppErrorBoundary>
+      </PresentationProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

@@ -30,7 +30,7 @@ The production build is emitted to `dist/`. Runtime data, fonts, and icons are b
 
 ## What works
 
-- Light, Dark, and System appearance options in the top bar. Preferences persist across visits and synchronize between tabs; System follows OS appearance changes.
+- A toolbar gear opens Preferences with Light, Dark, and System appearance and EUR, USD, and INR currency options. Preferences persist across visits and synchronize between tabs; System follows OS appearance changes even when settings are closed.
 - EUR, USD, and INR display-currency selection with fixed illustrative conversion rates for monetary KPIs; the current 71 operating KPIs have no monetary unit, so their values stay in their original units.
 - A saved airport local-time / UTC control shows both zones in timeline axes, detail tables, and snapshot timestamps.
 - A live time-only clock stays centered in the sticky toolbar and updates every second. Click the clock to switch between airport local time (IST) and UTC; Enter and Space also work. The selection is saved, while KPI snapshot timestamps remain tied to the static demo data.

@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { Monitor, Moon, Sun } from 'lucide-react';
 
 type ThemePreference = 'light' | 'dark' | 'system';
+const ThemeContext = createContext<{
+  preference: ThemePreference;
+  changePreference: (preference: ThemePreference) => void;
+  notice: string;
+} | null>(null);
 // Retain the original key to preserve appearance preferences after the AeroPulse rename.
 const storageKey = 'airside.theme.v1';
 const isPreference = (value: unknown): value is ThemePreference =>
@@ -31,7 +36,7 @@ function applyTheme(preference: ThemePreference) {
 export function initializeTheme() {
   applyTheme(readPreference());
 }
-export function ThemeSelector() {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const [preference, setPreference] = useState<ThemePreference>(readPreference);
   const [notice, setNotice] = useState('');
   useEffect(() => {
@@ -53,6 +58,26 @@ export function ThemeSelector() {
       window.removeEventListener('storage', storageChanged);
     };
   }, [preference]);
+  const changePreference = (next: ThemePreference) => {
+    applyTheme(next);
+    setPreference(next);
+    try {
+      localStorage.setItem(storageKey, next);
+      setNotice('');
+    } catch {
+      setNotice('Theme changed for this visit. Browser storage is unavailable.');
+    }
+  };
+  return (
+    <ThemeContext.Provider value={{ preference, changePreference, notice }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+export function ThemeSelector() {
+  const theme = useContext(ThemeContext);
+  if (!theme) throw new Error('ThemeProvider is missing');
+  const { preference, changePreference, notice } = theme;
   const Icon = preference === 'system' ? Monitor : preference === 'light' ? Sun : Moon;
   return (
     <div className="theme-control">
@@ -64,14 +89,7 @@ export function ThemeSelector() {
           onChange={(event) => {
             const next = event.target.value;
             if (!isPreference(next)) return;
-            applyTheme(next);
-            setPreference(next);
-            try {
-              localStorage.setItem(storageKey, next);
-              setNotice('');
-            } catch {
-              setNotice('Theme changed for this visit. Browser storage is unavailable.');
-            }
+            changePreference(next);
           }}
         >
           <option value="light">Light</option>

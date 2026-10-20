@@ -1,0 +1,81 @@
+.category-app .settings-trigger,
+.settings-heading .icon-button {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: #03071099;
+  z-index: 90;
+}
+.settings-dialog {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  width: min(360px, calc(100vw - 32px));
+  max-height: calc(100dvh - 104px);
+  overflow-y: auto;
+  padding: 20px;
+  color: var(--tooltip-text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px #0004;
+  z-index: 100;
+}
+.settings-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.settings-heading h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.settings-description,
+.settings-field p,
+.settings-hint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.settings-description {
+  margin: 4px 0 20px;
+}
+.settings-field {
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+}
+.settings-field h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.settings-field p {
+  margin-bottom: 12px;
+}
+.settings-dialog :is(.theme-selector, .currency-control) select {
+  width: 140px;
+  min-height: 44px;
+  font-size: 12px;
+}
+.settings-dialog .theme-notice {
+  position: static;
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+.settings-hint {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 700px) {
+  .settings-dialog {
+    top: 16px;
+    right: 16px;
+    max-height: calc(100dvh - 32px);
+  }
+}

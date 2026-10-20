@@ -7,6 +7,7 @@ test('appearance follows system, persists explicit choices and synchronizes tabs
 }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/');
+  await page.getByRole('button', { name: 'Open settings' }).click();
   const selector = page.getByRole('combobox', { name: 'Color theme' });
   await expect(selector).toHaveValue('system');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
@@ -14,21 +15,26 @@ test('appearance follows system, persists explicit choices and synchronizes tabs
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await selector.selectOption('light');
   await page.reload();
+  await page.getByRole('button', { name: 'Open settings' }).click();
   await expect(selector).toHaveValue('light');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   const second = await context.newPage();
   await second.goto('/');
+  await second.getByRole('button', { name: 'Open settings' }).click();
   await second.getByRole('combobox', { name: 'Color theme' }).selectOption('dark');
   await expect(selector).toHaveValue('dark');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await selector.selectOption('system');
+  await page.keyboard.press('Escape');
   await page.emulateMedia({ colorScheme: 'light' });
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
 
 test('light overview, focus and edit controls stay readable and mobile fits', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('button', { name: 'Open settings' }).click();
   await page.getByRole('combobox', { name: 'Color theme' }).selectOption('light');
+  await page.keyboard.press('Escape');
   await expect(page.locator('.kpi-card')).toHaveCount(9);
   await expect(page.locator('.metric-number').first()).toHaveCSS('color', 'rgb(23, 43, 69)');
   expect(
@@ -51,7 +57,9 @@ test('light overview, focus and edit controls stay readable and mobile fits', as
   ).toEqual([]);
   await page.getByRole('button', { name: 'Cancel', exact: true }).click();
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Open settings' }).click();
   await expect(page.getByRole('combobox', { name: 'Color theme' })).toBeVisible();
+  await page.keyboard.press('Escape');
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   await page.getByRole('button', { name: 'Open KPI categories' }).click();
   await expect(page.getByRole('dialog')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
@@ -68,6 +76,7 @@ test('invalid preferences and blocked storage do not prevent theme changes', asy
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.getByRole('button', { name: 'Open settings' }).click();
   await page.getByRole('combobox', { name: 'Color theme' }).selectOption('light');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await expect(
