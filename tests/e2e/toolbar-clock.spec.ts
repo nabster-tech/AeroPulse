@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+test.use({ timezoneId: 'Asia/Kolkata' });
+
 test('live clock ticks, rolls over at local midnight and follows the saved timezone', async ({
   page,
 }) => {
@@ -9,9 +11,9 @@ test('live clock ticks, rolls over at local midnight and follows the saved timez
   await page.goto('/');
   const clock = page.getByRole('button', { name: 'Show UTC' });
   await expect(clock).toHaveAttribute('aria-pressed', 'false');
-  await expect(clock).toHaveText(/^23:59:59\s*IST$/);
+  await expect(clock).toHaveText(/^23:59:59\s*Local$/);
   await page.clock.runFor(1000);
-  await expect(clock).toHaveText(/^00:00:00\s*IST$/);
+  await expect(clock).toHaveText(/^00:00:00\s*Local$/);
   await clock.click();
   await expect(clock).toHaveAttribute('aria-pressed', 'true');
   await expect(clock).toHaveText(/^18:30:00\s*UTC$/);
@@ -26,6 +28,33 @@ test('live clock ticks, rolls over at local midnight and follows the saved timez
   await expect(clock).toHaveAttribute('aria-pressed', 'true');
   await expect(clock).toContainText('18:30:00');
   await expect(page.locator('.page-footer')).toContainText('17 Sep 2026');
+});
+
+test('Local uses the user device timezone including daylight saving', async ({ browser }) => {
+  for (const { zone, date, expected } of [
+    { zone: 'America/New_York', date: '2026-01-15T12:00:00Z', expected: '07:00:00' },
+    { zone: 'America/New_York', date: '2026-07-15T12:00:00Z', expected: '08:00:00' },
+    { zone: 'Europe/Paris', date: '2026-01-15T12:00:00Z', expected: '13:00:00' },
+    { zone: 'Asia/Tokyo', date: '2026-01-15T12:00:00Z', expected: '21:00:00' },
+  ]) {
+    const context = await browser.newContext({ timezoneId: zone });
+    try {
+      const page = await context.newPage();
+      const instant = new Date(date);
+      await page.clock.install({ time: instant });
+      await page.clock.pauseAt(instant);
+      await page.goto('/');
+      const clock = page.getByRole('button', { name: 'Show UTC' });
+      await expect(clock.locator('.toolbar-clock-time')).toHaveText(expected);
+      await expect(clock.locator('.toolbar-clock-zone')).toHaveText('Local');
+      await expect(clock).toHaveAttribute('title', new RegExp(zone));
+      await clock.click();
+      await expect(clock.locator('.toolbar-clock-time')).toHaveText('12:00:00');
+      await expect(clock.locator('.toolbar-clock-zone')).toHaveText('UTC');
+    } finally {
+      await context.close();
+    }
+  }
 });
 
 test('clock stays centered, visible and clear of controls across breakpoints', async ({ page }) => {

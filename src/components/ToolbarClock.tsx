@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { airport } from '../categories/airport';
 import { usePresentation } from '../presentation';
 
 export function ToolbarClock() {
   const { localAndUtc, toggleTimeZones } = usePresentation();
   const [now, setNow] = useState(() => new Date());
-  const timeZone = localAndUtc ? 'UTC' : airport.timeZone;
-  const zoneLabel = localAndUtc ? 'UTC' : airport.timeZoneAbbreviation;
+  const timeZone = localAndUtc ? 'UTC' : new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const zoneLabel = localAndUtc ? 'UTC' : 'Local';
   const formatter = useMemo(
     () =>
       new Intl.DateTimeFormat('en-GB', {
@@ -38,7 +37,7 @@ export function ToolbarClock() {
       aria-label="Show UTC"
       aria-pressed={localAndUtc}
       aria-live="off"
-      title={`Showing ${localAndUtc ? 'UTC' : `${airport.name} local time (${zoneLabel})`}. Click to switch to ${localAndUtc ? 'local time' : 'UTC'}.`}
+      title={`Showing ${localAndUtc ? 'UTC' : `Local time (${timeZone})`}. Click to switch to ${localAndUtc ? 'Local' : 'UTC'}.`}
       onClick={toggleTimeZones}
     >
       <time dateTime={now.toISOString()}>
