@@ -1,0 +1,35 @@
+{
+  "mobileControls": [
+    {
+      "label": "Open KPI categories",
+      "width": 44,
+      "height": 44
+    },
+    {
+      "label": "Show UTC",
+      "width": 147.484375,
+      "height": 44
+    },
+    {
+      "label": "Open settings",
+      "width": 30,
+      "height": 30
+    }
+  ],
+  "mobileNavigationWorks": true,
+  "mobileFocusOverflow": 0,
+  "clockBeforeHover": "rgba(0, 0, 0, 0)",
+  "clockAfterHover": "rgb(203, 213, 225)",
+  "timelineFirstRows": [
+    "00:00 IST10033",
+    "00:15 IST10022",
+    "00:30 IST10022",
+    "00:45 IST66.723",
+    "01:00 IST10044",
+    "01:30 IST7534",
+    "01:15 IST10022",
+    "02:00 IST83.356",
+    "01:45 IST10011",
+    "02:30 IST66.723"
+  ]
+}

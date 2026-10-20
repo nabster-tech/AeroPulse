@@ -1,0 +1,30 @@
+{
+  "skipBefore": {
+    "url": "http://127.0.0.1:4175/#/kpis/passenger-flow",
+    "title": "Passenger Flow."
+  },
+  "skipAfter": {
+    "url": "http://127.0.0.1:4175/#/kpis/airside-operations",
+    "title": "Airside Operations.",
+    "focused": "main-content"
+  },
+  "runwayConfiguration": "Runway Configuration Utilization\n57.1\n%\n\n56 observations\n\nWest flow: —\n03:00 IST\n08:00 IST\n13:00 IST\n0\n25\n50\n75\n100\nAirport-wide\nDEMO",
+  "runwayConfigurationGroups": "Runway Configuration Utilization details\nGroup\tValue (%)\tNumerator\tDenominator\tWest flow\nEast flow\t100\t480\t480\tUnavailable\nWest flow\t0\t0\t360\tUnavailable",
+  "scenarioFirstRows": ["T1 151984", "T2 152755", "International 152985"],
+  "crossTabLayouts": {
+    "key": "airside.categories.meridian.v2",
+    "airsideHiddenAfterFirstSave": ["ao-otp-all"],
+    "airsideHiddenAfterOtherCategorySave": [],
+    "cardsAfterReload": 9
+  },
+  "search": {
+    "selected": "METAR Issuance TimelinessWeather / LVP",
+    "top": 834,
+    "bottom": 893.5,
+    "listTop": 197,
+    "listBottom": 747,
+    "scrollTop": 0,
+    "visible": false,
+    "background": "rgba(0, 0, 0, 0)"
+  }
+}

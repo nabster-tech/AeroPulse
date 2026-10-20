@@ -37,6 +37,38 @@ test('all eleven categories show exactly their registered KPIs and preserve brow
   await page.goForward();
   await expect(page.locator('#category-title')).toContainText('Passenger Flow');
 });
+test('runway configuration displays both shares and timeline rows in time order', async ({
+  page,
+}) => {
+  await page.locator('nav a[href="#/kpis/runway-operations"]').click();
+  const configuration = page.locator('[data-widget="ro-configuration"]');
+  await expect(configuration.locator('.metric-comparison')).toContainText('West flow: 42.9');
+  await configuration.locator('.focus-button').click();
+  const dialog = page.getByRole('dialog');
+  await dialog.getByRole('combobox', { name: 'Breakdown' }).selectOption('group');
+  const rows = dialog.locator('.focus-table tbody tr');
+  await expect(rows).toHaveCount(2);
+  await expect(rows.nth(0)).toContainText('East flow');
+  await expect(rows.nth(0)).toContainText('57.1');
+  await expect(rows.nth(1)).toContainText('West flow');
+  await expect(rows.nth(1)).toContainText('42.9');
+  await expect(dialog.locator('.focus-table thead')).not.toContainText('West flow');
+  await page.keyboard.press('Escape');
+
+  await page.locator('nav a[href="#/kpis/airside-operations"]').click();
+  await page.getByRole('combobox', { name: 'Granularity' }).selectOption('quarter');
+  await page.locator('[data-widget="ao-otp-all"] .focus-button').click();
+  const timeRows = await page
+    .getByRole('dialog')
+    .locator('.focus-table tbody tr td:first-child')
+    .allTextContents();
+  const minutes = timeRows.map((label) => {
+    const match = label.match(/^(\d{2}):(\d{2})/);
+    expect(match).not.toBeNull();
+    return Number(match![1]) * 60 + Number(match![2]);
+  });
+  expect(minutes).toEqual([...minutes].sort((a, b) => a - b));
+});
 test('drafts, hiding, undo, restore, saving and filters are scoped per category', async ({
   page,
 }) => {

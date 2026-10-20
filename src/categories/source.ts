@@ -289,6 +289,8 @@ define(
       r.start < 480 ? 'East flow' : 'West flow',
       r.start < 480 ? 15 : 0,
       15,
+      {},
+      r.start < 480 ? 0 : 100,
     ),
   ),
   { pairLabel: 'West flow' },
@@ -967,9 +969,26 @@ export function grouped(
   for (const r of result.rows) {
     const label =
       by === 'group' ? r.label : String(Math.floor(Math.max(0, r.minute - 0.001) / size) * size);
-    groups.set(label, [...(groups.get(label) ?? []), r]);
+    const rows = groups.get(label);
+    if (rows) rows.push(r);
+    else groups.set(label, [r]);
   }
-  return [...groups].map(([label, rows]) => ({
+  if (by === 'group' && result.id === 'ro-configuration') {
+    const totalMinutes = result.rows.reduce((sum, row) => sum + row.denominator, 0);
+    return [...groups].map(([label, rows]) => {
+      const minutes = rows.reduce((sum, row) => sum + row.denominator, 0);
+      return {
+        label,
+        value: totalMinutes ? (minutes / totalMinutes) * 100 : null,
+        reference: undefined,
+        numerator: minutes,
+        denominator: totalMinutes,
+      };
+    });
+  }
+  const ordered =
+    by === 'time' ? [...groups].sort((a, b) => Number(a[0]) - Number(b[0])) : [...groups];
+  return ordered.map(([label, rows]) => ({
     label:
       by === 'group'
         ? label

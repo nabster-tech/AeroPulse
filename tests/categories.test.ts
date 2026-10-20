@@ -56,6 +56,39 @@ describe('category catalog and static calculations', () => {
         );
       }
   });
+  it('keeps chart intervals chronological even when flight records arrive out of order', () => {
+    for (const entry of entries) {
+      const metric = calculate(entry.id, defaultFilters);
+      for (const granularity of ['quarter', 'hour'] as const) {
+        const labels = grouped(metric, granularity).map((point) => point.label);
+        const shuffled = grouped({ ...metric, rows: [...metric.rows].reverse() }, granularity);
+        expect(labels).toEqual([...labels].sort());
+        expect(shuffled.map((point) => point.label)).toEqual(labels);
+        const original = grouped(metric, granularity);
+        for (const [index, point] of shuffled.entries()) {
+          if (point.value === null) expect(original[index].value).toBeNull();
+          else expect(point.value).toBeCloseTo(original[index].value!);
+        }
+      }
+    }
+  });
+  it('shows the complete East and West runway configuration shares', () => {
+    const metric = calculate('ro-configuration', defaultFilters);
+    expect(metric.numerator).toBe(480);
+    expect(metric.denominator).toBe(840);
+    expect(metric.value).toBeCloseTo((480 / 840) * 100);
+    expect(metric.reference).toBeCloseTo((360 / 840) * 100);
+    const groups = grouped(metric, 'hour', 'group');
+    expect(groups.map((group) => group.label)).toEqual(['East flow', 'West flow']);
+    expect(groups.map((group) => group.numerator)).toEqual([480, 360]);
+    expect(groups.map((group) => group.value)).toEqual([(480 / 840) * 100, (360 / 840) * 100]);
+    const lastHour = calculate('ro-configuration', { ...defaultFilters, range: 'hour' });
+    expect(lastHour.value).toBe(0);
+    expect(lastHour.reference).toBe(100);
+    expect(grouped(lastHour, 'quarter', 'group')).toMatchObject([
+      { label: 'West flow', value: 100 },
+    ]);
+  });
   it('reuses resource records for the report and recomputes aggregated percentages', () => {
     for (const resource of ['all', 'GPU', 'PBB']) {
       const filters = { ...defaultFilters, resource };

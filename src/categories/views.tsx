@@ -120,13 +120,15 @@ export function detailRows(
           )
         : point.label,
   }));
+  const showPair =
+    metric.spec.pairLabel && !(breakdown === 'group' && metric.id === 'ro-configuration');
   return {
     columns: [
       breakdown === 'time' ? 'Airport interval' : 'Group',
       'Value (' + presentation.displayUnit(metric.spec.unit) + ')',
       'Numerator',
       'Denominator',
-      ...(metric.spec.pairLabel ? [metric.spec.pairLabel] : []),
+      ...(showPair ? [metric.spec.pairLabel!] : []),
     ],
     rows: groups.map(
       (r) =>
@@ -135,7 +137,7 @@ export function detailRows(
           presentation.convertValue(r.value, metric.spec.unit) ?? 'Unavailable',
           r.numerator,
           r.denominator,
-          ...(metric.spec.pairLabel
+          ...(showPair
             ? [presentation.convertValue(r.reference, metric.spec.unit) ?? 'Unavailable']
             : []),
         ] as (string | number)[],
