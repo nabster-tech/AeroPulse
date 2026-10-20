@@ -172,7 +172,7 @@ export function PresentationControls() {
         type="button"
         className="secondary-button timezone-button"
         aria-pressed={view.localAndUtc}
-        title="Show airport local time and UTC together"
+        title="Switch the live clock between airport local time and UTC; show both zones in data labels"
         onClick={view.toggleTimeZones}
       >
         <Clock3 size={14} />

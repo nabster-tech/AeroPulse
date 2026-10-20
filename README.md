@@ -33,6 +33,7 @@ The production build is emitted to `dist/`. Runtime data, fonts, and icons are b
 - Light, Dark, and System appearance options in the top bar. Preferences persist across visits and synchronize between tabs; System follows OS appearance changes.
 - EUR, USD, and INR display-currency selection with fixed illustrative conversion rates for monetary KPIs; the current 71 operating KPIs have no monetary unit, so their values stay in their original units.
 - A saved airport local-time / UTC control shows both zones in timeline axes, detail tables, and snapshot timestamps.
+- A live clock stays centered in the sticky toolbar, updates every second, and follows the local/UTC control (airport local IST by default, UTC when enabled). Its date follows the selected zone; KPI snapshot timestamps remain tied to the static demo data.
 
 - All 71 KPIs from the supplied requirements, grouped into Airside Operations, Turnaround Management, Runway Operations, Apron Operations, Airside Safety, Ground Support / Resources, Weather / LVP, Operational Efficiency, Reporting & Analytics, Terminal Operations, and Passenger Flow.
 - Category routes that survive reload and browser history, plus global KPI search that opens any metric in its category.

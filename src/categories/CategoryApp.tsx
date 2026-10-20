@@ -33,7 +33,9 @@ import { useCategoryWorkspace } from './workspace';
 import { CategoryGrid, KpiFocus, restoreKpi } from './CategoryGrid';
 import { exportRows } from './views';
 import { useDesktop } from '../components/useDesktop';
+import { ToolbarClock } from '../components/ToolbarClock';
 import './categories.css';
+import '../components/toolbar-clock.css';
 import { ThemeSelector } from '../theme';
 import { PresentationControls, usePresentation } from '../presentation';
 export default function CategoryApp() {
@@ -300,6 +302,7 @@ export default function CategoryApp() {
               <strong>{definition.label}</strong>
             </span>
           </div>
+          <ToolbarClock />
           <div className="topbar-right">
             <span className="category-demo-badge">STATIC DEMO</span>
             <PresentationControls />
