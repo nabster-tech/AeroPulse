@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { Monitor, Moon, Sun } from 'lucide-react';
 
 type ThemePreference = 'light' | 'dark' | 'system';
 const ThemeContext = createContext<{
@@ -78,11 +77,9 @@ export function ThemeSelector() {
   const theme = useContext(ThemeContext);
   if (!theme) throw new Error('ThemeProvider is missing');
   const { preference, changePreference, notice } = theme;
-  const Icon = preference === 'system' ? Monitor : preference === 'light' ? Sun : Moon;
   return (
     <div className="theme-control">
       <label className="theme-selector">
-        <Icon size={15} aria-hidden="true" />
         <span className="sr-only">Color theme</span>
         <select
           value={preference}
