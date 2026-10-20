@@ -37,6 +37,7 @@ The production build is emitted to `dist/`. Runtime data, fonts, and icons are b
 
 - All 71 KPIs from the supplied requirements, grouped into Airside Operations, Turnaround Management, Runway Operations, Apron Operations, Airside Safety, Ground Support / Resources, Weather / LVP, Operational Efficiency, Reporting & Analytics, Terminal Operations, and Passenger Flow.
 - Category routes that survive reload and browser history, plus global KPI search that opens any metric in its category.
+- A toolbar button shows or hides the desktop sidebar, expands the dashboard into the available width, and remembers the choice in this browser. Mobile keeps its menu drawer.
 - Category-specific time, terminal, movement, carrier, runway, resource, and granularity filters that are validated and remembered in this browser.
 - Drag-to-rearrange layout editing with edge and corner resize cursors, keyboard move/size actions, full-width sizing, Save/Cancel/Reset, and Hide/Undo/Restore.
 - Independent, versioned layouts and filter memory for every category, including compatible migration from the original four KPI preferences.
