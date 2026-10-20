@@ -1,0 +1,74 @@
+[
+  {
+    "width": 1200,
+    "mode": "idle",
+    "interactions": 0,
+    "gridResizeCallbacks": 0,
+    "gridWidths": [],
+    "chartResizeCallbacks": 0,
+    "scriptMs": 1.1,
+    "layoutMs": 0.57,
+    "taskMs": 4.1
+  },
+  {
+    "width": 1200,
+    "mode": "animated",
+    "interactions": 4,
+    "gridResizeCallbacks": 22,
+    "gridWidths": [
+      905, 945, 996, 1143, 1154, 1154, 1135, 1095, 965, 886, 886, 905, 945, 996, 1143, 1154, 1154,
+      1135, 1095, 1000, 886, 886
+    ],
+    "chartResizeCallbacks": 198,
+    "scriptMs": 1940.96,
+    "layoutMs": 74.92,
+    "taskMs": 2374.05
+  },
+  {
+    "width": 1200,
+    "mode": "instant",
+    "interactions": 4,
+    "gridResizeCallbacks": 8,
+    "gridWidths": [1154, 1154, 886, 886, 1154, 1154, 886, 886],
+    "chartResizeCallbacks": 72,
+    "scriptMs": 802.81,
+    "layoutMs": 23,
+    "taskMs": 1034.67
+  },
+  {
+    "width": 1440,
+    "mode": "idle",
+    "interactions": 0,
+    "gridResizeCallbacks": 0,
+    "gridWidths": [],
+    "chartResizeCallbacks": 0,
+    "scriptMs": 0.84,
+    "layoutMs": 0.94,
+    "taskMs": 3.99
+  },
+  {
+    "width": 1440,
+    "mode": "animated",
+    "interactions": 4,
+    "gridResizeCallbacks": 20,
+    "gridWidths": [
+      1127, 1167, 1262, 1375, 1376, 1376, 1357, 1317, 1222, 1108, 1127, 1167, 1218, 1372, 1376,
+      1357, 1317, 1266, 1119, 1108
+    ],
+    "chartResizeCallbacks": 164,
+    "scriptMs": 1788.15,
+    "layoutMs": 68.81,
+    "taskMs": 2209.91
+  },
+  {
+    "width": 1440,
+    "mode": "instant",
+    "interactions": 4,
+    "gridResizeCallbacks": 4,
+    "gridWidths": [1376, 1108, 1376, 1108],
+    "chartResizeCallbacks": 36,
+    "scriptMs": 649.04,
+    "layoutMs": 30.16,
+    "taskMs": 824.21
+  }
+]

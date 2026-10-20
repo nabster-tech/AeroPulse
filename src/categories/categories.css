@@ -10,6 +10,7 @@
 .category-app .main-shell {
   margin-left: 268px;
   min-width: 0;
+  transition: none;
 }
 .category-app .category-sidebar[hidden] {
   display: none;

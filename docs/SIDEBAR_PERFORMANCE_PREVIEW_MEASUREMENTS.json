@@ -1,0 +1,49 @@
+[
+  {
+    "width": 1200,
+    "mode": "idle",
+    "interactions": 0,
+    "gridResizeCallbacks": 0,
+    "gridWidths": [],
+    "chartResizeCallbacks": 0,
+    "scriptMs": 0.62,
+    "layoutMs": 0.7,
+    "taskMs": 3.15
+  },
+  {
+    "width": 1200,
+    "mode": "optimized",
+    "interactions": 4,
+    "gridResizeCallbacks": 33,
+    "gridWidths": [
+      1154, 1154, 1154, 1154, 1154, 1154, 1154, 1154, 1154, 886, 886, 886, 886, 886, 886, 886, 886,
+      886, 1154, 1154, 1154, 1154, 1154, 1154, 1154, 1154, 886, 886, 886, 886, 886, 886, 886
+    ],
+    "chartResizeCallbacks": 36,
+    "scriptMs": 288.12,
+    "layoutMs": 27.92,
+    "taskMs": 517.78
+  },
+  {
+    "width": 1440,
+    "mode": "idle",
+    "interactions": 0,
+    "gridResizeCallbacks": 0,
+    "gridWidths": [],
+    "chartResizeCallbacks": 0,
+    "scriptMs": 1.06,
+    "layoutMs": 0.79,
+    "taskMs": 3.99
+  },
+  {
+    "width": 1440,
+    "mode": "optimized",
+    "interactions": 4,
+    "gridResizeCallbacks": 4,
+    "gridWidths": [1376, 1108, 1376, 1108],
+    "chartResizeCallbacks": 36,
+    "scriptMs": 302.45,
+    "layoutMs": 31.45,
+    "taskMs": 557.57
+  }
+]

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import * as Menu from '@radix-ui/react-dropdown-menu';
 import * as Dialog from '@radix-ui/react-dialog';
 import GridLayout, { useContainerWidth, verticalCompactor } from 'react-grid-layout';
@@ -15,6 +15,7 @@ import {
 } from './views';
 import { usePresentation } from '../presentation';
 import type { CategoryFilters, CategorySnapshot, KpiResult } from './models';
+const CardChart = memo(MetricChart);
 export function CategoryGrid({
   snapshot,
   filters,
@@ -107,7 +108,6 @@ export function CategoryGrid({
       )}
       {mounted && width > 0 && (
         <GridLayout
-          key={bp}
           width={width}
           layout={layout}
           compactor={verticalCompactor}
@@ -285,7 +285,7 @@ export function CategoryGrid({
                           {...detailRows(metric, filters, 'time', presentation)}
                         />
                       ) : (
-                        <MetricChart metric={metric} filters={filters} />
+                        <CardChart metric={metric} filters={filters} />
                       )}
                     </div>
                     <footer className="card-footer">
